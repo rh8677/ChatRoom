@@ -1,0 +1,16 @@
+C:\Users\brul6\RiderProjects\ChatRoom\ChatRoom\bin\Debug\net5.0\ChatRoom.exe
+C:\Users\brul6\RiderProjects\ChatRoom\ChatRoom\bin\Debug\net5.0\ChatRoom.deps.json
+C:\Users\brul6\RiderProjects\ChatRoom\ChatRoom\bin\Debug\net5.0\ChatRoom.runtimeconfig.json
+C:\Users\brul6\RiderProjects\ChatRoom\ChatRoom\bin\Debug\net5.0\ChatRoom.runtimeconfig.dev.json
+C:\Users\brul6\RiderProjects\ChatRoom\ChatRoom\bin\Debug\net5.0\ChatRoom.dll
+C:\Users\brul6\RiderProjects\ChatRoom\ChatRoom\bin\Debug\net5.0\ref\ChatRoom.dll
+C:\Users\brul6\RiderProjects\ChatRoom\ChatRoom\bin\Debug\net5.0\ChatRoom.pdb
+C:\Users\brul6\RiderProjects\ChatRoom\ChatRoom\obj\Debug\net5.0\ChatRoom.csproj.AssemblyReference.cache
+C:\Users\brul6\RiderProjects\ChatRoom\ChatRoom\obj\Debug\net5.0\ChatRoom.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\brul6\RiderProjects\ChatRoom\ChatRoom\obj\Debug\net5.0\ChatRoom.AssemblyInfoInputs.cache
+C:\Users\brul6\RiderProjects\ChatRoom\ChatRoom\obj\Debug\net5.0\ChatRoom.AssemblyInfo.cs
+C:\Users\brul6\RiderProjects\ChatRoom\ChatRoom\obj\Debug\net5.0\ChatRoom.csproj.CoreCompileInputs.cache
+C:\Users\brul6\RiderProjects\ChatRoom\ChatRoom\obj\Debug\net5.0\ChatRoom.dll
+C:\Users\brul6\RiderProjects\ChatRoom\ChatRoom\obj\Debug\net5.0\ref\ChatRoom.dll
+C:\Users\brul6\RiderProjects\ChatRoom\ChatRoom\obj\Debug\net5.0\ChatRoom.pdb
+C:\Users\brul6\RiderProjects\ChatRoom\ChatRoom\obj\Debug\net5.0\ChatRoom.genruntimeconfig.cache
