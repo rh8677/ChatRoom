@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -10,18 +9,23 @@ namespace ChatRoom
 {
     internal static class Program
     {
+        private static int _clientId;
+        
         private static void ClientServer(object clientObj)
         {
             var client = (TcpClient) clientObj;
-            var tasks = new List<Task>();
+            var localId = _clientId;
+            _clientId++;
             var isFromFinished = false;
-
+            var joinMessage = "<0> client " + localId + " has joined the chat."; 
+            MessageQueue.Enqueue(joinMessage, localId);
+            
             using (var writer = new StreamWriter(client.GetStream()))
             {
                 writer.WriteLineAsync("Welcome to the Chat Room!");
             }
-            
-            async Task FromClient()
+
+            var fromClient = Task.Factory.StartNew(async () =>
             {
                 while (true)
                 {
@@ -33,19 +37,18 @@ namespace ChatRoom
                             isFromFinished = true;
                             break;
                         }
-                        MessageQueue.Enqueue(message, (int) MessageQueue.Now);
+                        MessageQueue.Enqueue(message, localId);
                     }
                 }
-            }
-            tasks.Add(FromClient());
+            });
             
-            async Task ToClient()
+            var toClient = Task.Factory.StartNew(async () =>
             {
                 long ts = 0;
                 while (true) {
-                    await using (var writer = new StreamWriter(client.GetStream()))
+                    using (var writer = new StreamWriter(client.GetStream()) ) 
                     {
-                        var message = MessageQueue.Dequeue(ref ts, 0, isFromFinished);
+                        var message = MessageQueue.Dequeue(ref ts, localId, isFromFinished);
                         if (!isFromFinished)
                         {
                             await writer.WriteLineAsync("Lol!");
@@ -56,11 +59,20 @@ namespace ChatRoom
                         }
                     }
                 }
+            });
+
+            try
+            {
+                Task.WaitAll(fromClient, toClient);  // Runs both tasks simultaneously
             }
-            tasks.Add(ToClient());
+            catch (AggregateException ex)
+            {
+                Console.WriteLine(ex.Flatten().Message);
+            }
             
-            var waitTask = Task.WhenAll(tasks);
-            waitTask.Wait();
+            var leaveMessage = "<0> client " + localId + " has left the chat."; 
+            MessageQueue.Enqueue(leaveMessage, localId);
+            
             client.Close();
         }
         
@@ -68,13 +80,13 @@ namespace ChatRoom
         {
             if (args.Length > 1)
             {
-                Console.WriteLine("Error - only 1 optional argument expected - 'show'.");
+                Console.WriteLine("Error - only 1 optional argument expected - '-show'.");
             }
             else
             {
                 if (args.Length == 1)
                 {
-                    if (args[0] == "show")
+                    if (args[0] == "-show")
                     {
                         MessageQueue.Show = true;
                     }
